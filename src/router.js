@@ -7,9 +7,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/cats',
+      path: '/cats/:breedId?',
       name: 'cats',
-      component: Cats
+      component: Cats,
+      props: true
     },
     {
       path: '*',

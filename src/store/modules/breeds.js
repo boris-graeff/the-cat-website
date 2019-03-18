@@ -44,6 +44,7 @@ export default {
     breedsCountries: ({ breeds }) => breeds.reduce((res, el) => {
       res[el.country_code] = el.origin
       return res
-    }, {})
+    }, {}),
+    getBreedById: ({ breeds }) => id => breeds.find(breed => breed.id === id)
   }
 }
