@@ -3,7 +3,7 @@ import axios from 'axios'
 const token = '40d2880b-db8a-4e2c-be16-d1e03aadebdf'
 
 const client = axios.create({
-  baseURL: 'https://api.thecatapi.com/',
+  baseURL: 'https://api.thecatapi.com/v1/',
   headers: {
     common: {
       'x-api-key': token
@@ -11,4 +11,4 @@ const client = axios.create({
   }
 })
 
-export const getBreeds = () => client.get('/v1/breeds')
+export const getBreeds = () => client.get('/breeds')

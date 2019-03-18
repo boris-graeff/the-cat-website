@@ -26,11 +26,16 @@ export default {
   name: 'cats',
   data () {
     return {
+      isLoading: true,
       countryFilter: ''
     }
   },
-  mounted () {
-    this.getBreeds()
+  async mounted () {
+    try {
+      await this.getBreeds()
+    } finally {
+      this.isLoading = false
+    }
   },
   computed: {
     ...mapGetters('breeds', {
