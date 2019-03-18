@@ -25,7 +25,6 @@
   .content {
     position: relative;
     max-width: 600px;
-    width: 100%;
     padding: 30px;
     background: white;
     overflow-y: auto;

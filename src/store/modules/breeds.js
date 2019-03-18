@@ -15,10 +15,11 @@ export default {
   },
   actions: {
     async getBreeds (store) {
-      const promises = []
+
       const response = await getBreeds()
       let breeds = response.data
 
+      const promises = []
       breeds.forEach(async breed => {
         if (breed.wikipedia_url) promises.push(getMediaFromUrl(breed.wikipedia_url))
         else promises.push('')

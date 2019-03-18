@@ -8,6 +8,7 @@
       @close="closeModal"/>
 
     <div class="filters">
+      Filters:
       <select v-model="countryFilter">
         <option value=''>All</option>
         <option v-for="(country, key) in breedsCountries" :key="key" :value="key">
@@ -82,14 +83,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import '~@/style/vars';
+
   .cats {
-    ul {
+    > ul {
       display: flex;
       flex-wrap: wrap;
-    }
 
-    li {
-      width: 25%;
+      > li {
+        width: 25%;
+      }
+    }
+  }
+
+  .filters {
+    background: $grey-light;
+    padding: 20px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 800px) {
+    .cats > ul > li {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .cats > ul > li {
+      width: 100%;
     }
   }
 </style>
