@@ -17,5 +17,14 @@ export default {
       const response = await getBreeds()
       store.commit(SET_BREEDS, response.data)
     }
+  },
+  getters: {
+    getFilteredBreeds: ({ breeds }) => (filter, filterValue) =>
+      filterValue ? breeds.filter(breed => breed[filter] === filterValue) : breeds,
+
+    breedsCountries: ({ breeds }) => breeds.reduce((res, el) => {
+      res[el.country_code] = el.origin
+      return res
+    }, {})
   }
 }

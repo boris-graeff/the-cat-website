@@ -1,7 +1,17 @@
 <template>
   <div class="cats">
+
+    <div class="filters">
+      <select v-model="countryFilter">
+        <option value=''>All</option>
+        <option v-for="(country, key) in breedsCountries" :key="key" :value="key">
+          {{ country }}
+        </option>
+      </select>
+    </div>
+
     <ul>
-      <li v-for="breed in breeds" :key="breed.id">
+      <li v-for="breed in getFilteredBreeds('country_code', countryFilter)" :key="breed.id">
         <breed-card :breed="breed" />
       </li>
     </ul>
@@ -9,17 +19,23 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import BreedCard from './cats/BreedCard'
 
 export default {
   name: 'cats',
+  data () {
+    return {
+      countryFilter: ''
+    }
+  },
   mounted () {
     this.getBreeds()
   },
   computed: {
-    ...mapState('breeds', {
-      breeds: ({ breeds }) => breeds
+    ...mapGetters('breeds', {
+      getFilteredBreeds: 'getFilteredBreeds',
+      breedsCountries: 'breedsCountries'
     })
   },
   methods: {
